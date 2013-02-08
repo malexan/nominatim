@@ -1,23 +1,25 @@
+# Название файла лучше с расширением .r задавать
 ### 
 finder <- function (x, geolocation=TRUE) {
-location <- GET("http://nominatim.openstreetmap.org/", path = "search",
-   query = list(q = 
-iconv(x, "cp1251", "UTF-8"), 
-				format = 'json', polygon = 1, addressdetails = 1))
-geolocation <- unlist (content(location))
+  location <- GET("http://nominatim.openstreetmap.org/", path = "search",
+    query = list(q = iconv(x, "cp1251", "UTF-8"), 
+		format = 'json', polygon = 1, addressdetails = 1))
+  geolocation <- unlist(content(location))
 	if(!is.null(geolocation)) {
 		lat <- (geolocation ["lat"])
 		lng <- (geolocation ["lon"])
 		osmID <- (geolocation ["osm_id"])
-		nameschool <-  (geolocation ["address.school"])
-		data <- c (osmID, lat, lng, nameschool)
-		names (data) <- c ("osmID", "lat", "lng", "nameschool")
+		nameschool <- (geolocation ["address.school"])
+		data <- c(osmID, lat, lng, nameschool)
+		names(data) <- c("osmID", "lat", "lng", "nameschool")
 		return(data)
-					}	
+	}	
 	else {
-    	return(c(NA,NA, NA,NA))
-  	}
+    return(c(NA,NA, NA,NA))
+  }
 }
+
 ournewbase <- with(school, data.frame(Name,
                   laply(Name, function(val){finder (val)})))
+
 ournewbase 
