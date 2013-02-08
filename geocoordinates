@@ -1,5 +1,10 @@
 # Название файла лучше с расширением .r задавать
 ### 
+
+library(httr)
+library(rjson)
+
+
 finder <- function (x, geolocation=TRUE) {
   location <- GET("http://nominatim.openstreetmap.org/", path = "search",
     query = list(q = iconv(x, "cp1251", "UTF-8"), 
