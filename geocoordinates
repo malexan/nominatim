@@ -3,6 +3,7 @@
 
 library(httr)
 library(rjson)
+library(plyr)
 
 
 finder <- function (x, geolocation=TRUE) {
