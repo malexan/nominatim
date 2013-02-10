@@ -10,7 +10,7 @@ finder <- function (x, geolocation=TRUE) {
     query = list(q = iconv(x, "cp1251", "UTF-8"), 
 		format = 'json', 
 		polygon = 0,
-		addressdetails = 1
+		addressdetails = 1,
 		email = 'alexander@matrunich.com')) # ещё можно добавить viewbox и bounded
   geolocation <- unlist(content(location))
 	if(!is.null(geolocation)) {
