@@ -1,0 +1,19 @@
+# поиск по http://openstreetmap.ru/api/search?q=
+
+finder <- function (x, geolocation=TRUE) {
+  location <- GET("http://openstreetmap.ru/api/search?q=",
+     q = list(q = iconv(x, "cp1251", "UTF-8")))
+  geolocation <-  unlist(fromJSON(content(location)))
+  if(!is.null(geolocation)) {
+		lat <- (geolocation ["matches.lat"])
+		lng <- (geolocation ["matches.lon"])
+		osmID <- (geolocation ["matches.id"])
+		address <- (geolocation ["matches.display_name"])
+		data <- c(osmID, lat, lng, nameschool)
+		names(data) <- c("osmID", "lat", "lng", "nameschool")
+		return(data)
+	}	
+	else {
+    return(c(NA,NA, NA,NA))
+  }
+}
