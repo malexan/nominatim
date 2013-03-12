@@ -4,6 +4,9 @@ finder <- function (x, geolocation=TRUE) {
 
 # а для чего параметр geolocation?
 
+require(httr)
+require(rjson)
+
   location <- GET("http://openstreetmap.ru/api/search?q=",
      q = list(q = iconv(x, "cp1251", "UTF-8")))
   geolocation <-  unlist(fromJSON(content(location)))
