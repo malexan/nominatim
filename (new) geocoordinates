@@ -12,8 +12,8 @@ finder <- function (x, geolocation=TRUE) {
 		lng <- (geolocation ["matches.lon"])
 		osmID <- (geolocation ["matches.id"])
 		address <- (geolocation ["matches.display_name"])
-		data <- c(osmID, lat, lng, nameschool)
-		names(data) <- c("osmID", "lat", "lng", "nameschool")
+		data <- c(osmID, lat, lng, address)
+		names(data) <- c("osmID", "lat", "lng", "address")
 		return(data)
 	}	
 	else {
